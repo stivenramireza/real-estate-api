@@ -20,7 +20,9 @@ class HTTPHandler(BaseHTTPRequestHandler, PropertyController):
 
     @property
     def root(self) -> object:
-        return json.dumps({"message": "Real Estate API is running successfully"}).encode()
+        return json.dumps(
+            {"message": "Real Estate API is running successfully"}
+        ).encode()
 
     @property
     def not_found_path(self) -> object:
