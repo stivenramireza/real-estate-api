@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  real-estate-api:
+    image: stivenramireza/real-estate-api:latest
+    ports:
+      - 8000
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.middlewares.real-estate-api-https.stripprefix.prefixes=/
+        - traefik.http.routers.real-estate-api-http.rule=Host(`${DOMAIN?Variable not set}`) && PathPrefix(`${API_PATH?Variable not set}`)
+        - traefik.http.routers.real-estate-api-http.entrypoints=http
+        - traefik.http.routers.real-estate-api-http.middlewares=https-redirect
+        - traefik.http.routers.real-estate-api-https.rule=Host(`${DOMAIN?Variable not set}`) && PathPrefix(`${API_PATH?Variable not set}`)
+        - traefik.http.routers.real-estate-api-https.middlewares=real-estate-api-https
+        - traefik.http.routers.real-estate-api-https.entrypoints=https
+        - traefik.http.routers.real-estate-api-https.tls=true
+        - traefik.http.routers.real-estate-api-https.tls.certresolver=le
+        - traefik.http.services.real-estate-api.loadbalancer.server.port=8000
+
+networks:
+  traefik-public:
+    external: true
