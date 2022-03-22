@@ -13,9 +13,9 @@ else:
     dotenv_path = ".env.dev"
     logger.info("Using development environment variables")
 
-exists = os.path.exists(dotenv_path)
+exists_secrets_files = os.path.exists(dotenv_path)
 
-if not exists:
+if not exists_secrets_files:
     raise Exception("env files do not exist")
 
 load_dotenv(dotenv_path)

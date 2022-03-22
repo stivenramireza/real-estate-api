@@ -5,5 +5,5 @@ class PropertyService:
 
     property_repository = PropertyRepository()
 
-    def get_properties(self) -> list[dict[str, any]]:
-        return self.property_repository.get_properties()
+    def get_properties(self, status: str, year: int, city: str) -> list[dict[str, any]]:
+        return self.property_repository.get_properties(status, year, city)

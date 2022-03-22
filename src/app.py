@@ -14,6 +14,9 @@ class HTTPHandler(BaseHTTPRequestHandler, PropertyController):
             case "/":
                 self.wfile.write(bytes(self.root))
             case "/properties":
+                status = None
+                year = None
+                city = None
                 self.wfile.write(bytes(self.properties))
             case _:
                 self.wfile.write(bytes(self.not_found_path))
