@@ -13,10 +13,10 @@ services:
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
         - traefik.http.middlewares.real-estate-api-https.stripprefix.prefixes=/
-        - traefik.http.routers.real-estate-api-http.rule=Host(`${DOMAIN?Variable not set}`) && PathPrefix(`${API_PATH?Variable not set}`)
+        - traefik.http.routers.real-estate-api-http.rule=Host(`${DOMAIN?Variable not set}`) && PathPrefix(`/`)
         - traefik.http.routers.real-estate-api-http.entrypoints=http
         - traefik.http.routers.real-estate-api-http.middlewares=https-redirect
-        - traefik.http.routers.real-estate-api-https.rule=Host(`${DOMAIN?Variable not set}`) && PathPrefix(`${API_PATH?Variable not set}`)
+        - traefik.http.routers.real-estate-api-https.rule=Host(`${DOMAIN?Variable not set}`) && PathPrefix(`/`)
         - traefik.http.routers.real-estate-api-https.middlewares=real-estate-api-https
         - traefik.http.routers.real-estate-api-https.entrypoints=https
         - traefik.http.routers.real-estate-api-https.tls=true
