@@ -12,8 +12,8 @@ The used technologies were:
 - **Dotenv:** It lets you read some .env files and loads into an environment like **production**, **staging** or **development** (https://pypi.org/project/python-dotenv/).
 - **MySQL Connector:** It's a driver to connect to MySQL server easily and use the differents tools that it offers (https://pypi.org/project/mysql-connector/).
 - **Black:**  It's a formatter to have a good understanding of the Python code. It also uses **PEP8** as its standard style guides (https://pypi.org/project/black/).
-- **Docker Swarm:** It's an orchestration management tool that runs on Docker applications.in cluster mode. In this case we use to deploy the API in a **Digital Ocean** server.
-- **Traefik:** It's an HTTP reverse proxy and load balance to deploy the microservice ensuring the HTTPS protocol.
+- **Docker Swarm:** It's an orchestration management tool that runs on Docker applications.in cluster mode. In this case we use to deploy the API in a **Digital Ocean** server (https://docs.docker.com/engine/swarm/).
+- **Traefik:** It's an HTTP reverse proxy and load balance to deploy the microservice ensuring the HTTPS protocol (https://doc.traefik.io/traefik/).
 
 ## How to run
 
