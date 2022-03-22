@@ -5,7 +5,8 @@ PROPERTIES = """
         p.city, 
         s.name AS status, 
         p.price,
-        p.description
+        p.description,
+        p.year
     FROM property p
     INNER JOIN (
         SELECT sh.property_id, sh.status_id, sh.update_date
@@ -23,6 +24,6 @@ PROPERTIES = """
     AND s.name IN ("pre_venta", "en_venta", "vendido")
 """
 
-FILTERED_PROPERTIES = """
+PROPERTIES_WITH_FILTERS = """
     AND (s.name = %s OR p.year = %s OR p.city LIKE %s)
 """
