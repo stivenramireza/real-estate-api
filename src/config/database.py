@@ -35,7 +35,7 @@ class MySQLConnection:
 
     @staticmethod
     def get_instance(credentials: dict) -> object:
-        if not MySQLConnection._instance:
+        if not MySQLConnection._instance or not MySQLConnection._instance.is_connected():
             MySQLConnection(
                 host=credentials.get("DB_HOST"),
                 port=credentials.get("DB_PORT"),
