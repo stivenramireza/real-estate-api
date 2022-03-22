@@ -5,7 +5,7 @@ PROPERTIES = """
         p.city, 
         s.name AS status, 
         p.price,
-        p.description 
+        p.description
     FROM property p
     INNER JOIN (
         SELECT sh.property_id, sh.status_id, sh.update_date
@@ -20,6 +20,7 @@ PROPERTIES = """
     ON sh.property_id = p.id
     INNER JOIN status s ON s.id = sh.status_id
     WHERE p.city IS NOT NULL AND p.address IS NOT NULL AND p.price <> 0
+    AND s.name IN ("pre_venta", "en_venta", "vendido")
 """
 
 FILTERED_PROPERTIES = """
