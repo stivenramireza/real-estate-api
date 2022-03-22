@@ -6,7 +6,7 @@ from src.utils.logger import logger
 
 
 def main() -> None:
-    app = HTTPServer(("127.0.0.1", int(PORT)), HTTPHandler)
+    app = HTTPServer(("0.0.0.0", int(PORT)), HTTPHandler)
     logger.info(f"Real Estate API is running at port {PORT} in {PYTHON_ENV} mode")
     app.serve_forever()
 
