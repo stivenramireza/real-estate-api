@@ -3,11 +3,9 @@ from src.config.database import MySQLConnection
 
 
 class DatabaseRepository:
-    def read_from_db(
-        self, sql: str, values: tuple[any], connection: object
-    ) -> list[dict[str, any]]:
+    def read_from_db(self, sql: str, connection: object) -> list[dict[str, any]]:
         cursor = connection.cursor()
-        cursor.execute(sql, values)
+        cursor.execute(sql)
         columns = [column[0] for column in cursor.description]
         records = [dict(zip(columns, row)) for row in cursor.fetchall()]
         return records

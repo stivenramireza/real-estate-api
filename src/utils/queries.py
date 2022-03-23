@@ -24,6 +24,8 @@ PROPERTIES = """
     AND s.name IN ("pre_venta", "en_venta", "vendido")
 """
 
-PROPERTIES_WITH_FILTERS = """
-    AND (s.name = %s OR p.year = %s OR p.city LIKE %s)
-"""
+STATUS_FILTER = "s.name = '{}'"
+
+YEAR_FILTER = "p.year = {}"
+
+CITY_FILTER = "p.city LIKE '%{}%'"
