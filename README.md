@@ -81,7 +81,7 @@ El código SQL para extender este modelo:
 
 ```sql
 CREATE TABLE liked_properties ( 
-	id INT NOT NULL AUTO_INCREMENT, 
+    id INT NOT NULL AUTO_INCREMENT, 
     user_id INT NOT NULL, 
     property_id INT NOT NULL, 
     active BIT,
