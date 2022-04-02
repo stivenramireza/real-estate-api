@@ -1,61 +1,61 @@
 # Real Estate API
 
-Este proyecto contiene **2 microservicios**, el primero construido sin usar ningún framework y el segundo es conceptual.
+This projects contains **2 microservices**, the first is built without using any framework and the second is conceptual.
 
-La idea principal es tener una herramienta para los usuarios que desean buscar los inmuebles vendidos y disponibles. También, ellos pueden usar diferentes filtros como **status**, **year** y **city**. Adicionalmente, los usuarios pueden darle "Me gusta" a sus inmuebles favoritos con el objetivo de tener un ranking interno.
+The main idea is having a tool for users who wants to search sold and availables properties. Also, they can use different filters like **status**, **year** and **city**. In adittion tho this, users can like their favorite properties in order to have an internal ranking.
 
-## 1. Microservicio de búsqueda
+## 1. Search microservice
 
-### Tecnologías
+### Technologies
 
-Las tecnologías usadas fueron:
+The used technologies were:
 
-- **HTTP Server:** Es una librería nativa construida en Python que permite crear un simple servidor HTTP (https://docs.python.org/3/library/http.server.html).
-- **Dotenv:** Permite leer los archivos .env y cargarlos en un ambiente como **production**, **staging** o **development** (https://pypi.org/project/python-dotenv/).
-- **MySQL Connector:** Es un driver que permite conectarse a un servidor de MySQL fácilmente y acceder a las herramientas que éste ofrece (https://pypi.org/project/mysql-connector/).
-- **Unittest:** Es una librería nativa construida en Python que permite testear las aplicaciones y se pueden correr **pruebas unitarias y de integración** (https://docs.python.org/3/library/unittest.html).
-- **Black:**  Es una herramienta para formatear y tener un buen entendimiento del código Python. También usa **PEP8** como su guía estándar de estilos (https://pypi.org/project/black/).
-- **Docker Swarm:** Es un herramienta orquestadora que corre aplicaciones contenerizadas con Docker en modo clúster. En este caso se desplegó la API en un servidor de **Digital Ocean** (https://docs.docker.com/engine/swarm/).
-- **Traefik:** Es un proxy inverso HTTP y balanceador de cargas que permite realizar despliegues de microservicios asegurando el protocolo de seguridad HTTPS (https://doc.traefik.io/traefik/).
+- **HTTP Server:** It's a native library built in Python that allows you create a simple HTTP server (https://docs.python.org/3/library/http.server.html).
+- **Dotenv:** It allows you read the .env files and load into an environment like **production**, **staging** or **development** (https://pypi.org/project/python-dotenv/).
+- **MySQL Connector:** It's a driver that allows you connect to MySQL server easily and access to the tools that it offers (https://pypi.org/project/mysql-connector/).
+- **Unittest:** It's a native library built in Python that allows you test the applications and it can run **unit** and **integration** tests (https://docs.python.org/3/library/unittest.html).
+- **Black:** It's a tool to format and have a good understading of the code. It also uses **PEP8** as its standard styles guide (https://pypi.org/project/black/).
+- **Docker Swarm:** It's a tool that runs containerized applications with Docker in cluster mode. In this case the application was deployed in a **Digital Ocean** server (https://docs.docker.com/engine/swarm/).
+- **Traefik:** It's an HTTP reverse proxy and load balancer that allows you deploy microservices ensuring the HTTPS secure protocol (https://doc.traefik.io/traefik/).
 
-### Ejecución
+### Execution
 
-#### App en modo desarrollo
+#### App in development mode
 
-Primero que todo se necesita establecer un ambiente de trabajo:
+First of all, you need to have a working environment:
 
 	$ python3.10 -m venv python3.10
     $ source python3.10/bin/activate
     $ pip install -r requirements.txt
     $ source .env.dev
 
-Luego, se procede a ejecutar la app:
+Later, you can run the app:
 
     $ python main.py
 
-#### App en modo producción con Docker Compose
+#### App in production mode with Docker Compose
 
     $ docker build -t stivenramireza/real-estate-api:latest .
     $ docker push stivenramireza/real-estate-api:latest
 	$ docker-compose up -d
 	$ docker logs -f real_estate_api
 
-#### App en modo producción con Docker Swarm y Traefik
+#### App in production mode with Docker Swarm and Traefik
 
     $ docker build -t stivenramireza/real-estate-api:latest .
     $ docker push stivenramireza/real-estate-api:latest
     $ docker stack deploy -c stack.yml production --with-registry-auth
 	$ docker service logs -f production_real-estate-api
 
-La ejecución de la **API en producción** se puede ver en el siguiente video de **Loom**:
+The execution of the API in production mode was recorded in a **Loom** video that you can check in this link:
 
 https://www.loom.com/share/f049c101bb8846fe84b3df0e943b4357
 
-### Pruebas
+### Testing
 
-#### Pruebas unitarias
+#### Unit tests
 
-En este caso se han creado algunas **pruebas unitarias** con el objetivo de verificar que el servicio de propiedades está correctamente funcionando.
+In this case some units tests were created in order to check the property service is running successfully.
 
     $ python -m unittest tests/**/*.py --verbose
 
@@ -63,9 +63,9 @@ En este caso se han creado algunas **pruebas unitarias** con el objetivo de veri
 <img src="https://user-images.githubusercontent.com/31974084/159540017-d690e085-342c-40c6-8617-b21384ac169f.png">
 </p>
 
-## 2. Microservicio de "Me gusta"
+## 2. "Like" microservice
 
-Este microservicio permite a los usuarios darle un "Me gusta" a un inmueble en específico luego de haberse registrado en la base de datos.
+This microservice allows users like a specific property after their register in the database.
 
 ### Diagrama Entidad-Relación
 
@@ -73,11 +73,11 @@ Este microservicio permite a los usuarios darle un "Me gusta" a un inmueble en e
 <img src="https://user-images.githubusercontent.com/31974084/159550727-6760b9c7-d3e7-4453-8365-f5047ea2013d.png">
 </p>
 
-El modelo de base de datos se extendería de esta forma porque así podríamos asegurar que un usuario pueda tener múltiples propiedades marcadas con "Me gusta". Por eso es necesario establecer las llaves foráneas de **user_id** y **property_id** haciendo relación a las respectivas tablas de **auth_user** (usuarios registrados)  y **property** (inmuebles).
+The database model would extend in this way because we can ensure that a user can have multiple liked properties. For that reason is necessary establish the **user_id** and **property_id** foreign keys related to the **auth_user** (registered users) and **property** (properties) tables respectively.
 
-Adicionalmente se añade un campo **active** que puede resultar útil al momento de hacer **análisis de datos** debido a que podríamos tener registro de los usuarios que antes le había dado "Me gusta" a un inmueble y luego lo quitaron. Esto con el objetivo de establecer una estrategia de negocio, si es el caso, donde se valide con los usuarios en qué momento les dejó de interesar el inmueble y de qué manera podríamos recomendar inmuebles similares o que se ajusten a la nueva necesidad de los clientes.
+In addition to this, a new field **active** will be added that can be important for **data analytics** cause we could have a register of the user who liked a property and later unliked it. In this case we need to establish a business strategy, if applicable, where we can validate when users stopped being interested the property and how we could recommend similar properties or they adjust the new necessity of the customers.
 
-El código SQL para extender este modelo:
+The SQL sentence in order to extend this model:
 
 ```sql
 CREATE TABLE liked_properties ( 
