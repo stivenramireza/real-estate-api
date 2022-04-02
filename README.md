@@ -1,6 +1,6 @@
 # Real Estate API
 
-This projects contains **2 microservices**, the first is built without using any framework and the second is conceptual.
+This project contains **2 microservices**, the first is built without using any framework and the second is conceptual.
 
 The main idea is having a tool for users who wants to search sold and availables properties. Also, they can use different filters like **status**, **year** and **city**. In adittion tho this, users can like their favorite properties in order to have an internal ranking.
 
