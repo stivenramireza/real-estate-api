@@ -24,8 +24,8 @@ The used technologies were:
 
 First of all, you need to have a working environment:
 
-	$ python3.10 -m venv python3.10
-    $ source python3.10/bin/activate
+	$ python3.10 -m venv venv
+    $ source venv/bin/activate
     $ pip install -r requirements.txt
     $ source .env.dev
 
