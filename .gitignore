@@ -1,8 +1,11 @@
 # Environment variables
 .env
 
+# Code editors
+.vscode
+
 # Virtual environments
-python3.10
+venv
 
 # Cache
 src/__pycache__
