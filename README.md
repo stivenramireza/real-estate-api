@@ -2,7 +2,7 @@
 
 This project contains **2 microservices**, the first is built without using any framework and the second is conceptual.
 
-The main idea is having a tool for users who want to search sold and availables properties. Also, they can use different filters like **status**, **year** and **city**. In adittion to this, users can like their favorite properties in order to have an internal ranking.
+The main idea is having a tool for users who want to search sold and available properties. Also, they can use different filters like **status**, **year** and **city**. In adittion to this, users can like their favorite properties in order to have an internal ranking.
 
 ## 1. Search microservice
 
