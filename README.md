@@ -67,7 +67,7 @@ In this case some units tests were created in order to check the property servic
 
 This microservice allows users like a specific property after their register in the database.
 
-### Diagrama Entidad-Relación
+### Entity Relationship diagram
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/31974084/159550727-6760b9c7-d3e7-4453-8365-f5047ea2013d.png">
